@@ -10,7 +10,7 @@ function Downloads() {
                 </div>
                 <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 lg:gap-4">
                     <div className="flex flex-col gap-2">
-                        <a href={process.env.PUBLIC_URL + '/proxies/HTTP.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
+                        <a href={process.env.REACT_APP_PUBLIC_URL + '/proxies/HTTP.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -22,7 +22,7 @@ function Downloads() {
                         </a>
                     </div>
                     <div className="flex flex-col gap-2">
-                        <a href={process.env.PUBLIC_URL + '/proxies/SOCKS4.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
+                        <a href={process.env.REACT_APP_PUBLIC_URL + '/proxies/SOCKS4.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
@@ -35,7 +35,7 @@ function Downloads() {
                     
                     </div>
                     <div className="flex flex-col gap-2">
-                        <a href={process.env.PUBLIC_URL + '/proxies/SOCKS5.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
+                        <a href={process.env.REACT_APP_PUBLIC_URL + '/proxies/SOCKS5.txt'} target="_blank" rel="noopener noreferrer" className="inline-flex h-10 items-center rounded-md border px-4 text-sm font-medium shadow-sm gap-2 transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50 border-base-300 bg-base-300 hover:bg-secondary hover:text-base-300 focus-visible:ring-gray-300">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
                                 <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
                                 <polyline points="14 2 14 8 20 8"></polyline>
