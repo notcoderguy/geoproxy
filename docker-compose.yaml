@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  geoproxy-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      - LICENSE_KEY=${LICENSE_KEY}
+      - MMDB_DIRECTORY=${MMDB_DIRECTORY}
+    ports:
+      - ${API_PORT}:8000
+    volumes:
+      - shared_data:/app/out
+
+  geoproxy-web:
+    build:
+      context: ./website
+      dockerfile: Dockerfile
+    ports:
+      - ${WEB_PORT}:3000
+    volumes:
+      - shared_data:/usr/src/app/build/proxies
+    depends_on:
+      - geoproxy-api
+
+volumes:
+  shared_data:
