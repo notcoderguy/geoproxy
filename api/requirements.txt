@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+cloudscraper
+redis[hiredis]
+requests
+python-dotenv
+maxminddb
+PySocks
+colorama
+rich
