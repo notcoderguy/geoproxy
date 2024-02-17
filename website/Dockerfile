@@ -16,6 +16,9 @@ RUN npm ci --omit=dev
 # Copy the rest of the source files into the image.
 COPY . .
 
+# Rename .env.prod to .env
+RUN cp .env.prod .env.local
+
 # Run the build script.
 RUN npm run build
 
