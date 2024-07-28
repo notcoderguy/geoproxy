@@ -143,18 +143,19 @@ def geoNode():
         }
 
         HEADERS = {
-            "accept": "application/json, text/plain, */*",
-            "accept-language": "en-US,en;q=0.9",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "accept-language": "en-US,en;q=0.9,en-IN;q=0.8",
             "cache-control": "no-cache",
             "pragma": "no-cache",
-            "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
+            "priority": "u=0, i",
+            "sec-ch-ua": "\"Not)A;Brand\";v=\"99\", \"Microsoft Edge\";v=\"127\", \"Chromium\";v=\"127\"",
             "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"Windows\"",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-site",
-            "Referer": "https://geonode.com/",
-            "Referrer-Policy": "strict-origin-when-cross-origin"
+            "sec-ch-ua-platform": "\"Linux\"",
+            "sec-fetch-dest": "document",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-site": "none",
+            "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1"
         }
 
         SOCKS4 = []
@@ -181,17 +182,20 @@ def geoNode():
             fetch_page_task = progress.add_task("Scraping GeoNode...", total=total_pages)
 
             for page in range(1, total_pages + 1):
-                PARAMS['page'] = page
-                r = scraper.get(URL, params=PARAMS, headers=HEADERS)
-                data = r.json()
-                for proxy in data['data']:
-                    if proxy['protocols'] == ['http']:
-                        HTTP.append(f"{proxy['ip']}:{proxy['port']}")
-                    elif proxy['protocols'] == ['socks4']:
-                        SOCKS4.append(f"{proxy['ip']}:{proxy['port']}")
-                    elif proxy['protocols'] == ['socks5']:
-                        SOCKS5.append(f"{proxy['ip']}:{proxy['port']}")        
-                progress.update(fetch_page_task, advance=1)
+                try:
+                    PARAMS['page'] = page
+                    r = scraper.get(URL, params=PARAMS, headers=HEADERS)
+                    data = r.json()
+                    for proxy in data['data']:
+                        if proxy['protocols'] == ['http']:
+                            HTTP.append(f"{proxy['ip']}:{proxy['port']}")
+                        elif proxy['protocols'] == ['socks4']:
+                            SOCKS4.append(f"{proxy['ip']}:{proxy['port']}")
+                        elif proxy['protocols'] == ['socks5']:
+                            SOCKS5.append(f"{proxy['ip']}:{proxy['port']}")        
+                    progress.update(fetch_page_task, advance=1)
+                except:
+                    print(Fore.RED + '[-] Scraping from geonode.com failed.' + Fore.RESET)
 
         checker('data/HTTP.txt', HTTP)
         checker('data/SOCKS4.txt', SOCKS4)
