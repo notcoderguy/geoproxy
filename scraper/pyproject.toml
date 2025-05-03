@@ -4,4 +4,12 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "cloudscraper>=1.2.71",
+    "colorama>=0.4.6",
+    "maxminddb>=2.6.3",
+    "pysocks>=1.7.1",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+    "rich>=14.0.0",
+]
