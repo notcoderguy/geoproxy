@@ -23,8 +23,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('isp')->nullable();
-            $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->string('last_checked')->nullable();
+            $table->enum('status', ['active', 'inactive', 'unchecked'])->default('active');
             $table->timestamps();
         });
     }
