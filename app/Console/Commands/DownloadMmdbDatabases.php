@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Http\Controllers\MmdbDownloadController;
+use Illuminate\Console\Command;
 
 class DownloadMmdbDatabases extends Command
 {
@@ -40,7 +40,7 @@ class DownloadMmdbDatabases extends Command
 
             return 1;
         } catch (\Exception $e) {
-            $this->error('Error downloading MMDB databases: ' . $e->getMessage());
+            $this->error('Error downloading MMDB databases: '.$e->getMessage());
 
             return 1;
         }

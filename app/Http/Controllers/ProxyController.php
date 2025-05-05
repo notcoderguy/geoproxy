@@ -12,12 +12,12 @@ class ProxyController extends Controller
     public function index()
     {
         return response()->json([
-            "message" => "Welcome to the GeoIP API!",
-            "version" => "1.1.0",
-            "website" => "https://geoproxy.in",
-            "documentation" => "https://docs.geoproxy.in/",
-            "github" => "https://github.com/notcoderguy/geoproxy-db",
-            "author" => "https://notcoderguy.com"
+            'message' => 'Welcome to the GeoIP API!',
+            'version' => '1.1.0',
+            'website' => 'https://geoproxy.in',
+            'documentation' => 'https://docs.geoproxy.in/',
+            'github' => 'https://github.com/notcoderguy/geoproxy-db',
+            'author' => 'https://notcoderguy.com',
         ]);
     }
 
@@ -27,11 +27,11 @@ class ProxyController extends Controller
             'format' => 'sometimes|in:json,txt',
             'google_pass' => 'sometimes|boolean',
             'anonymous' => 'sometimes|boolean',
-            'amount' => 'sometimes|integer|min:1|max:50'
+            'amount' => 'sometimes|integer|min:1|max:50',
         ]);
 
         $type = strtoupper($type);
-        if (!in_array($type, ['HTTP', 'SOCKS4', 'SOCKS5'])) {
+        if (! in_array($type, ['HTTP', 'SOCKS4', 'SOCKS5'])) {
             return response()->json(['error' => 'Invalid proxy type. Choose HTTP, SOCKS4, or SOCKS5'], 400);
         }
 
@@ -43,8 +43,8 @@ class ProxyController extends Controller
         $query = Proxy::query()
             ->where('status', 'active')
             ->where('protocol', strtolower($type))
-            ->when($googlePass, fn($q) => $q->withGooglePass('0'))
-            ->when($anonymous, fn($q) => $q->withAnonymity('Anonymous'));
+            ->when($googlePass, fn ($q) => $q->withGooglePass('0'))
+            ->when($anonymous, fn ($q) => $q->withAnonymity('Anonymous'));
 
         $proxies = $query->inRandomOrder()
             ->limit($amount)
@@ -54,7 +54,7 @@ class ProxyController extends Controller
                     'ip' => $proxy->ip,
                     'port' => $proxy->port,
                     'country' => $proxy->country,
-                    'anonymous' => Str::lower($proxy->anonymity) === 'elite'
+                    'anonymous' => Str::lower($proxy->anonymity) === 'elite',
                 ];
             });
 
@@ -66,7 +66,8 @@ class ProxyController extends Controller
             return response()->json($proxies);
         }
 
-        $txtOutput = $proxies->map(fn($p) => "{$p['ip']}:{$p['port']}")->implode("\n");
+        $txtOutput = $proxies->map(fn ($p) => "{$p['ip']}:{$p['port']}")->implode("\n");
+
         return new Response($txtOutput, 200, ['Content-Type' => 'text/plain']);
     }
 }

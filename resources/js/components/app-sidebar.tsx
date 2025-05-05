@@ -21,7 +21,7 @@ const mainNavItems: NavItem[] = [
         title: 'Download',
         href: '/#download',
         icon: Download,
-    }
+    },
 ];
 
 const footerNavItems: NavItem[] = [
