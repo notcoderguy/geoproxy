@@ -30,37 +30,45 @@ class CreateProxyLink extends Command
         $target = base_path('public/proxies');
         $link = base_path('scraper/proxies');
 
-        if (! file_exists($target)) {
+        // Check if target exists
+        if (!file_exists($target)) {
             $this->error("The target [$target] does not exist.");
-
             return;
         }
-        
-        if (file_exists($link)) {
-            $this->error("The link [$link] already exists.");
 
-            return;
+        // Ensure target directory exists (though it should since target exists)
+        $targetDir = dirname($target);
+        if (!file_exists($targetDir)) {
+            if (!File::makeDirectory($targetDir, 0755, true)) {
+                $this->error("Failed to create target directory [$targetDir]");
+                return;
+            }
+        }
+
+        // Ensure link directory exists
+        $linkDir = dirname($link);
+        if (!file_exists($linkDir)) {
+            if (!File::makeDirectory($linkDir, 0755, true)) {
+                $this->error("Failed to create link directory [$linkDir]");
+                return;
+            }
+        }
+
+        // Remove existing link if it exists
+        if (file_exists($link)) {
+            $this->info("The link [$link] already exists. It will be overwritten.");
+            if (!File::delete($link)) {
+                $this->error("Failed to delete existing link [$link]");
+                return;
+            }
         }
 
         // Create the symbolic link
-        if (! file_exists($target)) {
-            File::makeDirectory($target, 0755, true);
-        }
-
-        if (file_exists($link)) {
-            $this->error("The link [$link] already exists.");
-
+        if (!File::link($target, $link)) {
+            $this->error("Failed to create the link [$link]");
             return;
         }
-        
-        symlink($target, $link);
-        
-        if (! file_exists($link)) {
-            $this->error("Failed to create the link [$link].");
 
-            return;
-        }
-        
         $this->info("The link [$link] has been created successfully.");
         $this->info("The target [$target] is linked to [$link].");
     }
