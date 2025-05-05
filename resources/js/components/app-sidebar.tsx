@@ -21,15 +21,15 @@ const mainNavItems: NavItem[] = [
         title: 'Download',
         href: '/#download',
         icon: Download,
-    },
-    {
-        title: 'API',
-        href: '/api',
-        icon: Code,
     }
 ];
 
 const footerNavItems: NavItem[] = [
+    {
+        title: 'API',
+        href: 'https://geoproxy.in/api',
+        icon: Code,
+    },
     {
         title: 'Repository',
         href: 'https://github.com/notcoderguy/geoproxy-db',
