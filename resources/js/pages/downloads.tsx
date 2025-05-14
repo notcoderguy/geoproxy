@@ -1,9 +1,9 @@
 import { AppShell } from '@/components/app-shell';
 import { AppSidebar } from '@/components/app-sidebar';
-import { Head } from '@inertiajs/react';
 import Heading from '@/components/heading';
-import { Button } from '@/components/ui/button';
 import { MobileNavbar } from '@/components/mobile-navbar'; // <-- Add this import
+import { Button } from '@/components/ui/button';
+import { Head } from '@inertiajs/react';
 
 const downloadOptions = [
     {
@@ -31,10 +31,7 @@ export default function Downloads() {
             <AppShell variant="sidebar">
                 <AppSidebar />
                 <div className="bg-background text-foreground relative flex min-h-screen w-full snap-y snap-mandatory flex-col items-center overflow-y-auto px-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-6 lg:px-8 [&::-webkit-scrollbar]:hidden">
-                    <section
-                        className="flex min-h-screen w-full max-w-7xl snap-start flex-col justify-center py-20 text-center"
-                    >
-
+                    <section className="flex min-h-screen w-full max-w-7xl snap-start flex-col justify-center py-20 text-center">
                         <Heading title="Download the proxies" description="Get started with the resources you need. Simply click to download." />
 
                         <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-3">
@@ -47,7 +44,7 @@ export default function Downloads() {
                                                 key={format}
                                                 variant="outline"
                                                 size="lg"
-                                                className="w-full hover:cursor-pointer hover:shadow-lg transition-shadow duration-300"
+                                                className="w-full transition-shadow duration-300 hover:cursor-pointer hover:shadow-lg"
                                                 onClick={() => {
                                                     const link = option.links.find((link) => link.endsWith(format));
                                                     if (link) {
