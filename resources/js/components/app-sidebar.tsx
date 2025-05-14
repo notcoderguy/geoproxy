@@ -14,12 +14,12 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Features',
-        href: '/#features',
+        href: '/features',
         icon: LayoutGrid,
     },
     {
-        title: 'Download',
-        href: '/#download',
+        title: 'Downloads',
+        href: '/downloads',
         icon: Download,
     },
 ];

@@ -27,7 +27,7 @@ class CreateMmdbLink extends Command
     public function handle()
     {
         // Link proxy to the api directory
-        $target = storage_path('app/private/geoip');
+        $target = storage_path('app/private/mmdb');
         $link = base_path('scraper/mmdb');
 
         // Check if target exists
