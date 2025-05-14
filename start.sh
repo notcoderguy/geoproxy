@@ -7,11 +7,12 @@ php artisan app:link:database
 php artisan app:link:mmdb
 php artisan app:link:proxy
 
-# Activate Python venv and run scraper in background
-cd scraper && \
-source .venv/bin/activate && \
-python main.py &
+# Run Python scraper in background, showing logs in console
+(
+  cd scraper
+  source .venv/bin/activate
+  python main.py
+) &
 
-# Start Laravel server
-cd ..
+# Run Laravel server, showing logs in console
 php artisan serve --host=0.0.0.0 --port=80

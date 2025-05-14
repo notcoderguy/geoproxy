@@ -16,7 +16,7 @@ from .db import ProxyDB
 # Initialize logging
 load_dotenv()
 logging.basicConfig(
-    level=logging.DEBUG if os.getenv('DEBUG', 'false').lower() == 'true' else logging.INFO,
+    level=logging.DEBUG if os.getenv('APP_DEBUG', 'false').lower() == 'true' else logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
@@ -397,7 +397,7 @@ def app():
     """
     logger.info("Initializing proxy checker")
     
-    MMDB_DIRECTORY = os.getenv('MMDB_DIRECTORY')
+    MMDB_DIRECTORY = 'mmdb'
     if not os.path.exists(MMDB_DIRECTORY):
         os.mkdir(MMDB_DIRECTORY)
         logger.info(f"Created MMDB directory: {MMDB_DIRECTORY}")
