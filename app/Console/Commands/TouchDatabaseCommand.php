@@ -18,17 +18,19 @@ class TouchDatabaseCommand extends Command
         // Check if database file exists
         if (file_exists($databasePath)) {
             $this->info("Database file [$databasePath] already exists");
+
             return;
         }
 
         // Ensure database directory exists with proper permissions
         $databaseDir = dirname($databasePath);
-        if (!file_exists($databaseDir)) {
+        if (! file_exists($databaseDir)) {
             try {
                 File::makeDirectory($databaseDir, 0755, true);
                 $this->info("Created database directory [$databaseDir]");
             } catch (\Exception $e) {
-                $this->error("Failed to create database directory [$databaseDir]: " . $e->getMessage());
+                $this->error("Failed to create database directory [$databaseDir]: ".$e->getMessage());
+
                 return;
             }
         }
@@ -44,7 +46,8 @@ class TouchDatabaseCommand extends Command
                 $this->info("Created database file [$databasePath]");
             }
         } catch (\Exception $e) {
-            $this->error("Failed to create database file [$databasePath]: " . $e->getMessage());
+            $this->error("Failed to create database file [$databasePath]: ".$e->getMessage());
+
             return;
         }
 
