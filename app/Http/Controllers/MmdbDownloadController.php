@@ -37,7 +37,7 @@ class MmdbDownloadController extends Controller
 
         try {
             // Add the token as a Bearer token in the Authorization header
-            $response = Http::timeout(120)->withHeaders([
+            $response = Http::timeout(300)->retry(3, 100)->withHeaders([
                 'Authorization' => "Bearer {$mmdb_sync_pat}",
             ])->get($url);
 
