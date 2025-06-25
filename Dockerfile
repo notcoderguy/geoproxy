@@ -122,12 +122,17 @@ RUN mkdir -p /var/www/.cache/uv \
     && cd /var/www/html/scraper \
     && bash -c "uv venv .venv && source .venv/bin/activate && uv sync"
 
+# Install cron
+RUN apt-get update && apt-get install -y cron
+
+# Add cron job to run scraper daily at 2am
+RUN echo "0 2 * * * cd /var/www/html/scraper && .venv/bin/python main.py > /proc/1/fd/1 2>&1" | crontab -
+
 # Switch to the 'www-data' user
 USER www-data
 
 # Expose port 80 for the web server
 EXPOSE 80
 
-
-# Default command to run Redis and the Laravel development server
-CMD ["sh", "-c", "/usr/local/bin/start.sh"]
+# Run scraper once at startup, then start cron and Laravel server
+CMD ["sh", "-c", "cd /var/www/html/scraper && .venv/bin/python main.py && cron && /usr/local/bin/start.sh"]

@@ -35,31 +35,18 @@ def main():
         if len(sys.argv) > 1:
             command = sys.argv[1]
             if command == 'scrape':
-                while True:
-                    scrapeController()
-                    logger.info('Sleeping for 6 hours...')
-                    time.sleep(21600)
+                scrapeController()
             elif command == 'check':
                 checkController()
-                logger.info('Sleeping for 6 hours...')
-                time.sleep(21600)
             elif command == 'export':
                 exportController()
-                logger.info('Sleeping for 6 hours...')
-                time.sleep(21600)
             else:
-                while True:
-                    scrapeController()
-                    checkController()
-                    logger.info('Sleeping for 6 hours...')
-                    time.sleep(21600)
-        else:
-            while True:
                 scrapeController()
                 checkController()
-                exportController()
-                logger.info('Sleeping for 6 hours...')
-                time.sleep(21600)
+        else:
+            scrapeController()
+            checkController()
+            exportController()
     except KeyboardInterrupt:
         logger.info("Shutting down gracefully...")
     except Exception as e:
